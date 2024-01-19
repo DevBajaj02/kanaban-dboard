@@ -10,9 +10,12 @@ function App() {
   const [tickets,setTickets]=useState([]);
   const [grouping, setGrouping] = useState('status');
   const [sort, setSort] = useState('priority');
-
+  const [users,setUsers] = useState([]);
   useEffect(() => {
-    fetchData().then((data) => setTickets(data));
+    fetchData().then((data) => {
+      setUsers(data.users);
+      setTickets(data.tickets);
+    });
   }, []);
 
   console.log(tickets);
@@ -20,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <h1>Kanban Board</h1>
+      <Board tickets={tickets} users={users} grouping={grouping} sort={sort} />
     </div>
   );
 }

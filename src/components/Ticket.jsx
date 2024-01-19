@@ -1,7 +1,11 @@
-const Ticket = () =>{
-    return(<div>
+import React from 'react';
 
-    </div>);
+const Ticket = ({ticket}) => {
+    return (
+        <div>
+            <p>{ticket.title}</p>
+        </div>
+    )
 }
 
 export default Ticket;
