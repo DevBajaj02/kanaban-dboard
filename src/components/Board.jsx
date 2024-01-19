@@ -6,7 +6,7 @@ const Board = ({tickets, users, grouping, sort}) =>{
     return(
         <div>
            {tickets.map((ticket) => (
-        <Ticket key={ticket.id} ticket={ticket} />
+        <Ticket key={ticket.id} ticket={ticket} users={users} />
       ))}
         </div>
     );
