@@ -1,8 +1,18 @@
 import logo from './logo.svg';
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { fetchData } from './services/api';
+
 
 function App() {
+  const [tickets,setTickets]=useState([]);
+  const [grouping, setGrouping] = useState('status');
+  const [sort, setSort] = useState('priority');
+
+  useEffect(() => {
+    fetchData().then((data) => setTickets(data));
+  }, []);
+  console.log(tickets);
   return (
     <div className="App">
       <header className="App-header">
