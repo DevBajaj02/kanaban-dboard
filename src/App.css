@@ -165,10 +165,12 @@
   border-radius: 4px;
   margin-right: 10px;
   margin-left: 10px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
 }
 
 .display-button:hover {
   background-color: #c5c7ca;
 }
-
 
