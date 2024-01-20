@@ -7,9 +7,13 @@ import { fetchData } from './services/api';
 
 
 function App() {
+
+  const initialGrouping = localStorage.getItem('grouping') || 'status';
+  const initialSort = localStorage.getItem('sort') || 'priority';
+
   const [tickets,setTickets]=useState([]);
-  const [grouping, setGrouping] = useState('status');
-  const [sort, setSort] = useState('priority');
+  const [grouping, setGrouping] = useState(initialGrouping);
+  const [sort, setSort] = useState(initialSort);
   const [users,setUsers] = useState([]);
   useEffect(() => {
     fetchData().then((data) => {
@@ -17,6 +21,11 @@ function App() {
       setTickets(data.tickets);
     });
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('grouping', grouping);
+    localStorage.setItem('sort', sort);
+  }, [grouping, sort]);
 
   console.log(tickets);
 
