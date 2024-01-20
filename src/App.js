@@ -21,8 +21,14 @@ function App() {
   console.log(tickets);
 
   return (
-    <div className="App">
+    <div >
       <h1>Kanban Board</h1>
+      <DisplayOptions
+        grouping={grouping}
+        setGrouping={setGrouping}
+        sort={sort}
+        setSort={setSort}
+      />
       <Board tickets={tickets} users={users} grouping={grouping} sort={sort} />
     </div>
   );
