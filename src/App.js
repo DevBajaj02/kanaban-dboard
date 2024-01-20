@@ -31,9 +31,10 @@ function App() {
 
   return (
     <div >
-      <h1>Kanban Board</h1>
+      <h1 style={{ marginLeft: '10px' }}>Dashboard</h1>
       <DisplayOptions
-        grouping={grouping}
+  style={{ marginTop: '5px' }}
+  grouping={grouping}
         setGrouping={setGrouping}
         sort={sort}
         setSort={setSort}
