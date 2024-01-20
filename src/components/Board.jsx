@@ -2,7 +2,6 @@ import React from 'react';
 import Ticket from './Ticket';
 
 const Board = ({ tickets, users, grouping, sort }) => {
-  let groupedAndSortedTickets = [...tickets];
 
   if (!tickets || tickets.length === 0) {
     return (
@@ -12,6 +11,8 @@ const Board = ({ tickets, users, grouping, sort }) => {
     );
   }
   // Grouping logic
+  let groupedAndSortedTickets = [...tickets];
+
   if (grouping === 'user') {
     groupedAndSortedTickets = groupByUser(tickets, users);
   } else if (grouping === 'priority') {
