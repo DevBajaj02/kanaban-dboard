@@ -4,6 +4,13 @@ import Ticket from './Ticket';
 const Board = ({ tickets, users, grouping, sort }) => {
   let groupedAndSortedTickets = [...tickets];
 
+  if (!tickets || tickets.length === 0) {
+    return (
+      <div className="board-container">
+        <p>Loading...</p>
+      </div>
+    );
+  }
   // Grouping logic
   if (grouping === 'user') {
     groupedAndSortedTickets = groupByUser(tickets, users);
@@ -98,35 +105,33 @@ const groupByPriority = (tickets) => {
 };
 
 const sortSectionsByPriority = (groupedTickets) => {
-    const sortedSections = Object.keys(groupedTickets).sort((a, b) => {
-      const maxPriorityA = Array.isArray(groupedTickets[a])
-        ? Math.max(...groupedTickets[a].map((t) => t.priority || 0), 0)
-        : groupedTickets[a]?.priority || 0;
-  
-      const maxPriorityB = Array.isArray(groupedTickets[b])
-        ? Math.max(...groupedTickets[b].map((t) => t.priority || 0), 0)
-        : groupedTickets[b]?.priority || 0;
-  
-      return maxPriorityB - maxPriorityA;
-    });
-  
     const result = {};
-    sortedSections.forEach((section) => {
-      result[section] = groupedTickets[section];
+  
+    // Sort each group by priority
+    Object.keys(groupedTickets).forEach((group) => {
+      const groupItems = Array.isArray(groupedTickets[group])
+        ? groupedTickets[group]
+        : [groupedTickets[group]];
+  
+      const sortedGroup = groupItems.sort((a, b) => (b.priority || 0) - (a.priority || 0));
+      result[group] = sortedGroup;
     });
   
     return result;
-};
-
-const sortSectionsByTitle = (groupedTickets) => {
-  const sortedSections = Object.keys(groupedTickets).sort((a, b) => a.localeCompare(b));
-
-  const result = {};
-  sortedSections.forEach((section) => {
-    result[section] = groupedTickets[section];
-  });
-
-  return result;
-};
+  };
+  
+  
+  const sortSectionsByTitle = (groupedTickets) => {
+    const result = {};
+  
+    // Sort each group by title
+    Object.keys(groupedTickets).forEach((group) => {
+      const sortedGroup = groupedTickets[group].sort((a, b) => a.title.localeCompare(b.title));
+      result[group] = sortedGroup;
+    });
+  
+    return result;
+  };
+  
 
 export default Board;
