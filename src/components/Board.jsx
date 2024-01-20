@@ -34,20 +34,18 @@ console.log(groupedAndSortedTickets,777)
     <div
     className='board-container'
     >
-    {/* Render grouped and sorted tickets */}
     {Object.keys(groupedAndSortedTickets).map((groupName) => (
       <div 
       key={groupName}
       className='group-container'
       >
-        <h2>{groupName}</h2>
+      <h2>{getPriorityLabel(groupName)}</h2>
+      <p className="ticket-count">{groupedAndSortedTickets[groupName].length}</p>
         {Array.isArray(groupedAndSortedTickets[groupName]) ? (
-          // If it's an array, map over the tickets
           groupedAndSortedTickets[groupName].map((ticket) => (
             <Ticket key={ticket.id} ticket={ticket} users={users} />
           ))
         ) : (
-          // If it's not an array, assume it's a single ticket
           <Ticket key={groupedAndSortedTickets[groupName].id} ticket={groupedAndSortedTickets[groupName]} users={users} />
         )}
       </div>
@@ -134,5 +132,21 @@ const sortSectionsByPriority = (groupedTickets) => {
     return result;
   };
   
-
+  const getPriorityLabel = (priority) => {
+    switch (priority) {
+      case '4':
+        return 'Urgent';
+      case '3':
+        return 'High';
+      case '2':
+        return 'Medium';
+      case '1':
+        return 'Low';
+      case '0':
+        return 'No priority';
+      default:
+        return priority;
+    }
+  };
+  
 export default Board;
