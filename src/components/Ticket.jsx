@@ -20,7 +20,7 @@ const Ticket = ({ ticket, users }) => {
         );
       case 'In progress':
         return (
-          <IconContext.Provider value={{ color: 'yellow', size: '1.5em' }}>
+          <IconContext.Provider value={{ color:  '#ffd455', size: '1.5em' }}>
             <FaCircleHalfStroke  />
           </IconContext.Provider>
         );

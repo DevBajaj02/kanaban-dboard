@@ -17,12 +17,22 @@
   align-items: center;
 }
 .group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.5rem;
   font-weight: bold;
   background-color: #f0f0f0;
   padding: 10px;
   margin-bottom: 10px;
 }
+
+.ticket-count {
+  font-size: 0.8rem; 
+  color: grey;
+  margin-left: 5px; 
+}
+
 
   .ticket-card {
     background-color: #fff;
@@ -59,7 +69,7 @@
 
 .board-container {
   display: flex;
-  background-color: #e6e2e2f1;
+  background-color: #eef6f6f1;
 }
 
 
